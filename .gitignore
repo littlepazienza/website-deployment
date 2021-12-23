@@ -63,5 +63,10 @@ jenkins/credentials.xml
 jenkins/hudson.scm.CVSSCM.xml
 
 # WEBSITE IGNORE FILES
+# Ignore all sub dirs
+var/www/html/paz.ienza.tech/*/
+var/www/html/paz.ienza.tech/.htpasswd
+var/www/html/url.ienza.tech
 
-# NGINX IGNORE FILES
+# NGINX IGNeORE FILES
+nginx/*.log
