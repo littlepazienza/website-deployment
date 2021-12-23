@@ -1,0 +1,51 @@
+# paz.ienza
+server {
+
+	root /var/www/html/paz.ienza.tech;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name paz.ienza.tech;
+
+	location / {
+	    	# First attempt to serve request as file, then
+            	# as directory, then redirect to index(angular) if no file found.
+            	try_files $uri$args $uri$args/ /master/index.html;
+	}
+
+	location /movies/ {
+		autoindex on;
+		auth_basic "Restricted";
+		auth_basic_user_file /var/www/html/paz.ienza.tech/.htpasswd;
+	}
+	location /clips/ {
+		autoindex on;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/ienza.tech/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ienza.tech/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+
+
+
+}
+
+server {
+    if ($host = paz.ienza.tech) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+	server_name paz.ienza.tech;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}
