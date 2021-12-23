@@ -1,0 +1,66 @@
+# JENKINS IGNORE FILES
+*.idea
+.bash_history
+.m2/
+.ivy2/
+.sbt/
+.ssh/
+.emacs.d/
+.gitconfig
+.viminfo
+jenkins/logs
+jenkins/nodes
+jenkins/caches
+jenkins/.cache
+jenkins/log
+*.log
+*.tmp
+*.old
+*.bak
+*.jar
+*.swp
+jenkins/.owner
+jenkins/terracotta
+jenkins/updates
+jenkins/fingerprints
+jenkins/config-history
+# Only get the config.xml from any Jobs directory
+jenkins/jobs/*/builds
+jenkins/jobs/*/modules
+jenkins/jobs/*/htmlreports
+jenkins/jobs/*/last*
+jenkins/jobs/*/next*
+jenkins/jobs/*/*.csv
+jenkins/jobs/*/*.txt
+jenkins/jobs/*/*.log
+jenkins/jobs/*/workspace
+jenkins/jobs/*/modules
+# Process jobs that exist in folders
+jenkins/jobs/**/jobs/*/builds
+jenkins/jobs/**/jobs/*/modules
+jenkins/jobs/**/jobs/*/htmlreports
+jenkins/jobs/**/jobs/*/last*
+jenkins/jobs/**/jobs/*/next*
+jenkins/jobs/**/jobs/*/*.csv
+jenkins/jobs/**/jobs/*/*.txt
+jenkins/jobs/**/jobs/*/*.log
+jenkins/jobs/**/jobs/*/workspace
+jenkins/jobs/**/jobs/*/modules
+# More files
+jenkins/war
+jenkins/workspace
+jenkins/secrets
+jenkins/tools
+jenkins/users
+jenkins/secret.key*
+jenkins/identity.key
+jenkins/plugins/*/
+# Contains local info and secrets; don’t want this in Git
+jenkins/jenkins.model.JenkinsLocationConfiguration.xml
+jenkins/jenkins.mvn.GlobalMavenConfig.xml
+jenkins/credentials.xml
+jenkins/hudson.scm.CVSSCM.xml
+
+# WEBSITE IGNORE FILES
+
+# NGINX IGNORE FILES
