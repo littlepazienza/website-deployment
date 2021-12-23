@@ -26,12 +26,23 @@
   <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.7.0">
     <data>
       <jenkins.branch.BranchSource>
-        <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.10.1">
-          <id>eedf2eb6-3873-4d3a-af8b-e8c83a0cb26b</id>
-          <remote>https://github.com/littlepazienza/pazienza-tech</remote>
-          <credentialsId></credentialsId>
+        <source class="org.jenkinsci.plugins.github_branch_source.GitHubSCMSource" plugin="github-branch-source@2.11.3">
+          <id>a7122e20-bb25-4d5d-9730-a654a3efb909</id>
+          <apiUri>https://api.github.com</apiUri>
+          <repoOwner>littlepazienza</repoOwner>
+          <repository>pazienza-tech</repository>
+          <repositoryUrl>https://github.com/littlepazienza/pazienza-tech</repositoryUrl>
           <traits>
-            <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
+            <org.jenkinsci.plugins.github__branch__source.BranchDiscoveryTrait>
+              <strategyId>1</strategyId>
+            </org.jenkinsci.plugins.github__branch__source.BranchDiscoveryTrait>
+            <org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
+              <strategyId>1</strategyId>
+            </org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
+            <org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait>
+              <strategyId>1</strategyId>
+              <trust class="org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustPermission"/>
+            </org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait>
           </traits>
         </source>
         <strategy class="jenkins.branch.DefaultBranchPropertyStrategy">

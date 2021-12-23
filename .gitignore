@@ -52,6 +52,7 @@ jenkins/workspace
 jenkins/secrets
 jenkins/tools
 jenkins/users
+jenkins/org.jenkinsci.plugins.github_branch_source.GitHubSCMProbe.cache
 jenkins/secret.key*
 jenkins/identity.key
 jenkins/plugins/*/
