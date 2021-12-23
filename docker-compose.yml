@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8081:8080
+      - 50022:50000
+    container_name: jenkins
+    volumes:
+      - ./jenkins:/var/jenkins_home
+      - ./var/www/html:/var/www/html
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+  nginx:
+    image: nginx
+    privileged: true
+    user: root
+    ports:
+     - 80:80
+     - 443:443
+    container_name: nginx
+    volumes:
+     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+     - ./nginx/servers:/etc/nginx/servers
+     - ./var/www/html:/var/www/html
+     - /etc/letsencrypt:/etc/letsencrypt
+    environment:
+     - NGINX_HOST=ienza.tech
+     - NGINX_PORT=80
