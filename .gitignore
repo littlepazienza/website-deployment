@@ -56,6 +56,8 @@ jenkins/org.jenkinsci.plugins.github_branch_source.GitHubSCMProbe.cache
 jenkins/secret.key*
 jenkins/identity.key
 jenkins/plugins/*/
+# Dont need to check in the docker binary
+jenkins/docker/bin/docker
 # Contains local info and secrets; don’t want this in Git
 jenkins/jenkins.model.JenkinsLocationConfiguration.xml
 jenkins/jenkins.mvn.GlobalMavenConfig.xml

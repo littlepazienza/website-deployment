@@ -10,9 +10,10 @@ services:
     container_name: jenkins
     volumes:
       - ./jenkins:/var/jenkins_home
+      - ./jenkins/setup.sh:/usr/local/bin/setup.sh
+      - ./jenkins/bin:/usr/local/jenkins/bin
       - ./var/www/html:/var/www/html
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/local/bin/docker:/usr/local/bin/docker
+    command: /usr/local/bin/setup.sh
   nginx:
     image: nginx
     privileged: true
