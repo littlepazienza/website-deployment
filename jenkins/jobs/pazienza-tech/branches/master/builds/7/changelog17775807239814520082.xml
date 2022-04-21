@@ -1,9 +1,0 @@
-commit 6f8f8c16e57e8a17de631f1185cc448f813172e3
-tree af94f757cc8bd1d336ab82e788b7e83a92d27f86
-parent 1849736de2b94f0257e353bccdf289ba5c0d91af
-author Benjamin Pazienza <pazienza.log@gmail.com> 2021-12-22 20:10:13 -0500
-committer GitHub <noreply@github.com> 2021-12-22 20:10:13 -0500
-
-    Using workspace to resolve path to files to edit
-
-:100644 100644 b8317515009daf85e9b0ec67393f7ca6aadd0dac 87a1eb40a955b1c37d29e180b346b61e44b972b9 M	Jenkinsfile

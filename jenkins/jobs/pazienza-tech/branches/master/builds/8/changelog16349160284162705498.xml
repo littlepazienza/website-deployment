@@ -1,9 +1,0 @@
-commit d8dfd37e00837d329c7ee66c1e82e9538c81fa5b
-tree df5c7bece22ceb256acb2a3bed7135a83c4693e2
-parent 6f8f8c16e57e8a17de631f1185cc448f813172e3
-author Benjamin Pazienza <pazienza.log@gmail.com> 2021-12-22 20:27:12 -0500
-committer GitHub <noreply@github.com> 2021-12-22 20:27:12 -0500
-
-    Update Jenkinsfile
-
-:100644 100644 87a1eb40a955b1c37d29e180b346b61e44b972b9 3b5aeb5eec84495ce785e742198b367f031911d6 M	Jenkinsfile

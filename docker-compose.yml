@@ -1,7 +1,24 @@
 version: '3.7'
 services:
+  docker:
+    image: docker:dind
+    container_name: docker
+    privileged: true
+    user: root
+    ports:
+      - 2376:2376
+    volumes:
+      - ./jenkins-docker-certs:/certs/client
+      - ./jenkins:/var/jenkins_home
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    command: --storage-driver=overlay2
   jenkins:
-    image: jenkins/jenkins:lts
+    depends_on:
+      - "docker"
+    build:
+      context: .
+      target: jenkins
     privileged: true
     user: root
     restart: always
@@ -11,10 +28,14 @@ services:
     container_name: jenkins
     volumes:
       - ./jenkins:/var/jenkins_home
-      - ./jenkins/setup.sh:/usr/local/bin/setup.sh
-      - ./jenkins/bin:/usr/local/jenkins/bin
       - ./var/www/html:/var/www/html
-    command: /usr/local/bin/setup.sh
+      - ./jenkins-docker-certs:/certs/client:ro
+      - ./var/blog:/var/blog
+    environment:
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+      - JAVA_OPTS=-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true
   nginx:
     image: nginx
     privileged: true
@@ -38,3 +59,30 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
+  mongo:
+    image: mongo
+    privileged: true
+    user: root
+    restart: always
+    ports:
+      - 27017:27017
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=ienza-tech
+    volumes:
+      - ./mongodb-data:/data/db
+  blog-server:
+    depends_on:
+      - "jenkins"
+    build:
+      context: .
+      target: blog-server
+    privileged: true
+    user: root
+    restart: always
+    ports:
+      - 10443:10443
+    container_name: blog-server
+    volumes:
+      - ./var/www/html/blog.ienza.tech/blog-images:/var/blog-images
+    command: target/debug/blog-server /var/blog-images

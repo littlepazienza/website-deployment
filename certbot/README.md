@@ -1,4 +1,4 @@
-# Cerbot Volume
+# Certbot Volume
 
 Cerbot mounts this volume to save the ssl certs and expose them to the nginx image
 
