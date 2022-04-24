@@ -28,7 +28,13 @@ services:
      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
      - ./nginx/servers:/etc/nginx/servers
      - ./var/www/html:/var/www/html
-     - /etc/letsencrypt:/etc/letsencrypt
+     - ./certbot/www:/var/www/certbot/:ro
+     - ./certbot/conf/:/etc/nginx/ssl/:ro
     environment:
      - NGINX_HOST=ienza.tech
      - NGINX_PORT=80
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw

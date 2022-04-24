@@ -69,5 +69,8 @@ var/www/html/paz.ienza.tech/*/
 var/www/html/paz.ienza.tech/.htpasswd
 var/www/html/url.ienza.tech
 
-# NGINX IGNeORE FILES
+# NGINX IGNORE FILES
 nginx/*.log
+
+# CERBOT IGNORE FILES
+certbot

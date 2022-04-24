@@ -18,22 +18,18 @@ server {
 		auth_basic "Restricted";
 		auth_basic_user_file /var/www/html/paz.ienza.tech/.htpasswd;
 	}
+
 	location /clips/ {
 		autoindex on;
 	}
 
+	location /.well-known/acme-challenge/ {
+	        root /var/www/certbot;
+  }
 
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/ienza.tech/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/ienza.tech/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-
-
-
-
-
+  listen 443 ssl; # managed by Certbot
+  ssl_certificate /etc/nginx/ssl/live/paz.ienza.tech/fullchain.pem; # managed by Certbot
+  ssl_certificate_key /etc/nginx/ssl/live/paz.ienza.tech/privkey.pem; # managed by Certbot
 }
 
 server {
