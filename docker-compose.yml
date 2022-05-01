@@ -86,3 +86,16 @@ services:
     volumes:
       - ./var/www/html/blog.ienza.tech/blog-images:/var/blog-images
     command: target/debug/blog-server /var/blog-images
+  url-shortener:
+    depends_on:
+      - "jenkins"
+    build:
+      context: .
+      target: url-shortener
+    privileged: true
+    user: root
+    restart: always
+    ports:
+      - 34000:34000
+    container_name: url-shortener
+    command: target/debug/short_url
