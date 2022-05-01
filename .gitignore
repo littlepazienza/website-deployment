@@ -26,6 +26,7 @@ var/www/html/paz.ienza.tech/*/
 var/www/html/paz.ienza.tech/.htpasswd
 var/www/html/blog.ienza.tech/.htpasswd
 var/www/html/url.ienza.tech
+var/www/html/blog.ienza.tech/*/
 
 # NGINX IGNORE FILES
 nginx/*.log
