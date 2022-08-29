@@ -10,7 +10,7 @@ server {
 	location / {
 	    	# First attempt to serve request as file, then
             	# as directory, then redirect to index(angular) if no file found.
-            	try_files $uri$args $uri$args/ /master/index.html;
+            	try_files $uri$args $uri$args/ /main/index.html;
 	}
 
 	location /movies/ {
