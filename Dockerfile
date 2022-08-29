@@ -16,14 +16,14 @@ FROM rust as blog-server
 USER root
 RUN apt-get update
 RUN apt-get install unzip
-RUN curl -sSLO https://jenkins.paz.ienza.tech/job/blog-server/job/main/lastSuccessfulBuild/artifact/blog-server.zip
-RUN unzip blog-server.zip -d .
+RUN curl -sSLO https://jenkins.paz.ienza.tech/job/blog-server/job/main/lastSuccessfulBuild/artifact/blog-server.tar.gz
+RUN tar -xzvf blog-server.tar.gz -C .
 RUN rustup default nightly && cargo build
 
 FROM rust as url-shortener
 USER root
 RUN apt-get update
 RUN apt-get install unzip
-RUN curl -sSLO https://jenkins.paz.ienza.tech/job/url-shortener/job/main/lastSuccessfulBuild/artifact/url-shortener.zip
-RUN unzip url-shortener.zip -d .
+RUN curl -sSLO https://jenkins.paz.ienza.tech/job/url-shortener/job/main/lastSuccessfulBuild/artifact/url-shortener.tar.gz
+RUN tar -xzvf url-shortener.tar.gz -C .
 RUN rustup default nightly && cargo build
