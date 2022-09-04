@@ -81,7 +81,7 @@ services:
     user: root
     restart: always
     ports:
-      - 10443:10443
+      - 34001:34001
     container_name: blog-server
     volumes:
       - ./var/www/html/blog.ienza.tech/blog-images:/var/blog-images
