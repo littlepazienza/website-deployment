@@ -17,7 +17,7 @@ services:
     depends_on:
       - "docker"
     build:
-      context: .
+      context: ./build
       target: jenkins
     privileged: true
     user: root
@@ -73,7 +73,7 @@ services:
     depends_on:
       - "jenkins"
     build:
-      context: .
+      context: ./build
       target: blog-server
     privileged: true
     user: root
@@ -88,7 +88,7 @@ services:
     depends_on:
       - "jenkins"
     build:
-      context: .
+      context: ./build
       target: url-shortener
     privileged: true
     user: root
