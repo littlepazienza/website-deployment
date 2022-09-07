@@ -71,6 +71,8 @@ services:
       - MONGO_INITDB_DATABASE=ienza-tech
     volumes:
       - ./mongodb-data:/data/db
+    command:
+       "mongod --bind_ip 127.0.0.1"
   blog-server:
     depends_on:
       - "jenkins"
