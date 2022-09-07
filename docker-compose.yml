@@ -64,15 +64,11 @@ services:
     privileged: true
     user: root
     restart: always
-    ports:
-      - 27017:27017
     container_name: mongo
     environment:
       - MONGO_INITDB_DATABASE=ienza-tech
     volumes:
       - ./mongodb-data:/data/db
-    command:
-       "mongod --bind_ip 127.0.0.1"
   blog-server:
     depends_on:
       - "jenkins"
