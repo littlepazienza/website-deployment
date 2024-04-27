@@ -48,7 +48,9 @@ services:
     volumes:
      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
      - ./nginx/servers:/etc/nginx/servers
+     - ./nginx/templates:/etc/nginx/templates
      - ./var/www/html:/var/www/html
+     - $BANK_HTPASSWD:$BANK_HTPASSWD
      - ./certbot/www:/var/www/certbot/:ro
      - ./certbot/conf/:/etc/nginx/ssl/:ro
     environment:
@@ -59,6 +61,7 @@ services:
      - BANK_HTPASSWD=$BANK_HTPASSWD
     extra_hosts:
      - host.docker.internal:$HOST_IP_ADDR
+    command: /bin/bash -c "envsubst '$${HOME_IP} $${PHONE_IP} $${BANK_HTPASSWD}' < /etc/nginx/templates/sites.conf.template > /etc/nginx/servers/server && nginx -g 'daemon off;'"
   certbot:
     image: certbot/certbot:latest
     volumes:

@@ -24,13 +24,14 @@ jenkins-docker-certs/*
 # WEBSITE IGNORE FILES
 # Ignore all sub dirs
 var/www/html/paz.ienza.tech/*/
-var/www/html/paz.ienza.tech/.htpasswd
-var/www/html/blog.ienza.tech/.htpasswd
 var/www/html/url.ienza.tech
 var/www/html/blog.ienza.tech/*/
+var/www/html/ienza.tech/bank
+var/www/html/paz.ienza.tech/.htpasswd
 
 # NGINX IGNORE FILES
 nginx/*.log
+nginx/servers/*
 
 # CERBOT IGNORE FILES
 certbot
