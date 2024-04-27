@@ -54,6 +54,11 @@ services:
     environment:
      - NGINX_HOST=ienza.tech
      - NGINX_PORT=80
+     - HOME_IP=$HOME_IP
+     - PHONE_IP=$PHONE_IP
+     - BANK_HTPASSWD=$BANK_HTPASSWD
+    extra_hosts:
+     - host.docker.internal:$HOST_IP_ADDR
   certbot:
     image: certbot/certbot:latest
     volumes:
