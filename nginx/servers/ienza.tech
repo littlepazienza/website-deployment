@@ -11,6 +11,15 @@ server {
 		try_files $uri $uri/ =404;
 	}
 
+	location /bank/ {
+   		autoindex on;
+		auth_basic "Authentication Required For Access to the Bank";
+		auth_basic_user_file $BANK_HTPASSWD;
+		allow $HOME_IP;
+		allow $PHONE_IP;
+		deny all;
+	}
+
 	location /.well-known/acme-challenge/ {
         root /var/www/certbot;
   }
