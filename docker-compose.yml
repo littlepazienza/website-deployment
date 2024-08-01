@@ -50,6 +50,7 @@ services:
      - ./nginx/servers:/etc/nginx/servers
      - ./nginx/templates:/etc/nginx/templates
      - ./var/www/html:/var/www/html
+     - $BANK_DIR:/var/www/html/ienza.tech/bank
      - $BANK_HTPASSWD:$BANK_HTPASSWD
      - ./certbot/www:/var/www/certbot/:ro
      - ./certbot/conf/:/etc/nginx/ssl/:ro
@@ -59,6 +60,7 @@ services:
      - HOME_IP=$HOME_IP
      - PHONE_IP=$PHONE_IP
      - BANK_HTPASSWD=$BANK_HTPASSWD
+     - BANK_DIR=$BANK_DIR
     extra_hosts:
      - host.docker.internal:$HOST_IP_ADDR
     command: /bin/bash -c "envsubst '$${HOME_IP} $${PHONE_IP} $${BANK_HTPASSWD}' < /etc/nginx/templates/sites.conf.template > /etc/nginx/servers/server && nginx -g 'daemon off;'"
