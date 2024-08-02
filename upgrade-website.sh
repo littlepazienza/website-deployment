@@ -20,7 +20,7 @@ mv $ZIP_FILE $PAZIENZA_TECH/tmp/
 cd $PAZIENZA_TECH/tmp
 unzip $ZIP_FILE
 tar -xzvf $TAR_FILE
-mv dist/pazienza-tech/* $PAZIENZA_TECH
+mv * $PAZIENZA_TECH
 
 # Cleanup out folders
 cd $PAZIENZA_TECH
