@@ -48,7 +48,6 @@ services:
     container_name: blog-server
     volumes:
       - ./var/www/html/blog.ienza.tech/blog-images:/var/blog-images
-    command: target/debug/blog-server /var/blog-images
   url-shortener:
     image: benjaminpazienza/url-shortener:main
     privileged: true
@@ -57,4 +56,3 @@ services:
     ports:
       - 34000:34000
     container_name: url-shortener
-    command: target/debug/short_url
