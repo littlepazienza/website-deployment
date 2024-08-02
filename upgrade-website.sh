@@ -7,7 +7,7 @@ echo $ZIP_URL
 # Download the artifact to a local file called zip
 curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $ZIP_URL -O
 
-PAZIENZA_TECH=$(pwd)/var/www/html/paz.ienza.tech
+PAZIENZA_TECH=$(pwd)/var/www/html/paz.ienza.tech/master
 ZIP_FILE=zip
 TAR_FILE=website.tar.gz
 
@@ -19,7 +19,7 @@ mkdir $PAZIENZA_TECH/tmp
 mv $ZIP_FILE $PAZIENZA_TECH/tmp/
 cd $PAZIENZA_TECH/tmp
 unzip $ZIP_FILE
-tar -xzvf $TAR_FILE dist/pazienza-tech/*
+tar -xzvf $TAR_FILE
 mv dist/pazienza-tech/* $PAZIENZA_TECH
 
 # Cleanup out folders
