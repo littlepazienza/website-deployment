@@ -1,41 +1,5 @@
 version: '3.7'
 services:
-  docker:
-    image: docker:dind
-    container_name: docker
-    privileged: true
-    user: root
-    ports:
-      - 2376:2376
-    volumes:
-      - ./jenkins-docker-certs:/certs/client
-      - ./jenkins:/var/jenkins_home
-    environment:
-      - DOCKER_TLS_CERTDIR=/certs
-    command: --storage-driver=overlay2
-  jenkins:
-    depends_on:
-      - "docker"
-    build:
-      context: ./build
-      target: jenkins
-    privileged: true
-    user: root
-    restart: always
-    ports:
-      - 8081:8080
-      - 50022:50000
-    container_name: jenkins
-    volumes:
-      - ./jenkins:/var/jenkins_home
-      - ./var/www/html:/var/www/html
-      - ./jenkins-docker-certs:/certs/client:ro
-      - ./var/blog:/var/blog
-    environment:
-      - DOCKER_HOST=tcp://docker:2376
-      - DOCKER_CERT_PATH=/certs/client
-      - DOCKER_TLS_VERIFY=1
-      - JAVA_OPTS=-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true
   nginx:
     image: nginx
     privileged: true
@@ -48,10 +12,7 @@ services:
     volumes:
      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
      - ./nginx/servers:/etc/nginx/servers
-     - ./nginx/templates:/etc/nginx/templates
      - ./var/www/html:/var/www/html
-     - $BANK_DIR:/var/www/html/ienza.tech/bank
-     - $BANK_HTPASSWD:$BANK_HTPASSWD
      - ./certbot/www:/var/www/certbot/:ro
      - ./certbot/conf/:/etc/nginx/ssl/:ro
     environment:
@@ -60,10 +21,8 @@ services:
      - HOME_IP=$HOME_IP
      - PHONE_IP=$PHONE_IP
      - BANK_HTPASSWD=$BANK_HTPASSWD
-     - BANK_DIR=$BANK_DIR
     extra_hosts:
      - host.docker.internal:$HOST_IP_ADDR
-    command: /bin/bash -c "envsubst '$${HOME_IP} $${PHONE_IP} $${BANK_HTPASSWD}' < /etc/nginx/templates/sites.conf.template > /etc/nginx/servers/server && nginx -g 'daemon off;'"
   certbot:
     image: certbot/certbot:latest
     volumes:
@@ -80,11 +39,7 @@ services:
     volumes:
       - ./mongodb-data:/data/db
   blog-server:
-    depends_on:
-      - "jenkins"
-    build:
-      context: ./build
-      target: blog-server
+    image: benjaminpazienza/blog-server:main
     privileged: true
     user: root
     restart: always
@@ -95,11 +50,7 @@ services:
       - ./var/www/html/blog.ienza.tech/blog-images:/var/blog-images
     command: target/debug/blog-server /var/blog-images
   url-shortener:
-    depends_on:
-      - "jenkins"
-    build:
-      context: ./build
-      target: url-shortener
+    image: benjaminpazienza/url-shortener:main
     privileged: true
     user: root
     restart: always
