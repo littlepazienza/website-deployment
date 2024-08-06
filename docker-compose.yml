@@ -58,3 +58,11 @@ services:
     ports:
       - 34000:34000
     container_name: url-shortener
+  kalman-demo:
+    image: benjaminpazienza/kalman-demo:main
+    privileged: true
+    user: root
+    restart: always
+    ports:
+      - 34002:80
+    container_name: kalman-demo
