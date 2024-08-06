@@ -4,6 +4,8 @@
 # Website
 #########
 
+START_DIR=$(pwd)
+
 echo "Downloading the main website artifact"
 
 # Get the latest artifact URL
@@ -13,7 +15,7 @@ echo "Download url is: $ZIP_URL"
 # Download the artifact to a local file called zip
 curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $ZIP_URL -O
 
-PAZIENZA_TECH=$(pwd)/var/www/html/paz.ienza.tech/master
+PAZIENZA_TECH=$START_DIR/var/www/html/paz.ienza.tech/master
 ZIP_FILE=zip
 TAR_FILE=website.tar.gz
 
@@ -46,7 +48,7 @@ echo "Download url is: $ZIP_URL"
 # Download the artifact to a local file called zip
 curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $ZIP_URL -O
 
-KALMAN=$(pwd)/var/www/html/kalman.ienza.tech
+KALMAN=$START_DIR/var/www/html/kalman.ienza.tech
 ZIP_FILE=zip
 TAR_FILE=website.tar.gz
 
