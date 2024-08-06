@@ -61,7 +61,7 @@ mv $ZIP_FILE $KALMAN/tmp/
 cd $KALMAN/tmp
 unzip $ZIP_FILE
 tar -xzvf $TAR_FILE
-mv ./www/* $KALMAN
+mv * $KALMAN
 
 # Cleanup out folders
 cd $KALMAN
