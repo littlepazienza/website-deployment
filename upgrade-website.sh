@@ -18,7 +18,7 @@ ZIP_FILE=zip
 TAR_FILE=website.tar.gz
 
 # Ensure any of our setup is cleaned up
-rm -rf $PAZIENZA_TECH/tmp
+rm -rf $PAZIENZA_TECH
 
 # Move the zip into the target dir for my website, extract the relevant files, remove all the clutter
 mkdir $PAZIENZA_TECH/tmp
@@ -46,12 +46,12 @@ echo "Download url is: $ZIP_URL"
 # Download the artifact to a local file called zip
 curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $ZIP_URL -O
 
-KALMAN=$(pwd)/var/www/html/kalman.ienza.tech/
+KALMAN=$(pwd)/var/www/html/kalman.ienza.tech
 ZIP_FILE=zip
 TAR_FILE=website.tar.gz
 
 # Ensure any of our setup is cleaned up
-rm -rf $KALMAN/tmp
+rm -rf $KALMAN
 
 # Move the zip into the target dir for my website, extract the relevant files, remove all the clutter
 mkdir $KALMAN/tmp
