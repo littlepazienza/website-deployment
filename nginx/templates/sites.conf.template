@@ -164,7 +164,7 @@ server {
 
 
 }
-# url
+# blog
 server {
 
 	server_name server.blog.ienza.tech;
@@ -295,4 +295,21 @@ server {
     return 404; # managed by Certbot
 
 
+}
+
+# kalman
+server {
+
+	root /var/www/html/kalman.ienza.tech;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name kalman.ienza.tech;
+
+	location / {
+	    	# First attempt to serve request as file, then
+        	# as directory, then redirect to index(angular) if no file found.
+        	try_files $uri $uri/ index.html =404;
+	}
+  }
 }
