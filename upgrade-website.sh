@@ -18,7 +18,7 @@ ZIP_FILE=zip
 TAR_FILE=website.tar.gz
 
 # Ensure any of our setup is cleaned up
-rm -rf $PAZIENZA_TECH
+rm -rf $PAZIENZA_TECH/*
 
 # Move the zip into the target dir for my website, extract the relevant files, remove all the clutter
 mkdir $PAZIENZA_TECH/tmp
@@ -51,7 +51,7 @@ ZIP_FILE=zip
 TAR_FILE=website.tar.gz
 
 # Ensure any of our setup is cleaned up
-rm -rf $KALMAN
+rm -rf $KALMAN/*
 
 # Move the zip into the target dir for my website, extract the relevant files, remove all the clutter
 mkdir $KALMAN/tmp
