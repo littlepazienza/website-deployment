@@ -311,5 +311,9 @@ server {
         	# as directory, then redirect to index(angular) if no file found.
         	try_files $uri $uri/ index.html =404;
 	}
+
+	location /.well-known/acme-challenge/ {
+	        root /var/www/certbot;
+  	}
   }
 }
