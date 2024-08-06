@@ -19,6 +19,7 @@ nohup.out
 # WEBSITE IGNORE FILES
 # Ignore all sub dirs
 var/www/html/paz.ienza.tech/*/
+var/www/html/kalman.ienza.tech/*
 var/www/html/paz.ienza.tech/.htpasswd
 var/www/html/blog.ienza.tech/.htpasswd
 var/www/html/blog.ienza.tech/*/
