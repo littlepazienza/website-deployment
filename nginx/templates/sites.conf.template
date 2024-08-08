@@ -223,7 +223,6 @@ server {
 	}
 
 	location /bank {
-		root $BANK_DIR;
    		autoindex on;
 
 		auth_basic "Authentication Required For Access to the Bank";

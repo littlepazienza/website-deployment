@@ -12,7 +12,8 @@ services:
     volumes:
      - ./nginx/templates:/etc/nginx/templates
      - ./var/www/html:/var/www/html
-     - $BANK_DIR:$BANK_DIR
+     - $BANK_DIR:/var/www/html/ienza.tech/bank
+     - $BANK_HTPASSWD:$BANK_HTPASSWD
      - ./certbot/www:/var/www/certbot/:ro
      - ./certbot/conf/:/etc/nginx/ssl/:ro
     environment:
