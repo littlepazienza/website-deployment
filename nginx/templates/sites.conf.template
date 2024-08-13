@@ -309,4 +309,21 @@ server {
 	location /.well-known/acme-challenge/ {
 	        root /var/www/certbot;
   	}
+
+	listen 443 ssl; # managed by Certbot
+  	ssl_certificate /etc/nginx/ssl/live/kalman.ienza.tech/fullchain.pem; # managed by Certbot
+  	ssl_certificate_key /etc/nginx/ssl/live/kalman.ienza.tech/privkey.pem; # managed by Certbot
+}
+server {
+    if ($host = kalman.ienza.tech) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+        server_name kalman.ienza.tech;
+    listen 80;
+    return 404; # managed by Certbot
+
+
 }
