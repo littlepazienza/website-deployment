@@ -327,3 +327,19 @@ server {
 
 
 }
+
+
+# progetti-di-paz
+server {
+	server_name progetti-di-paz.ienza.tech;
+	root /var/www/html/progetti-di-paz.ienza.tech;
+	index index.html index.htm index.nginx-debian.html;
+	
+	location / {
+		try_files $uri $uri/ index.html =404;
+	}
+
+	location /.well-known/acme-challenge/ {
+	        root /var/www/certbot;
+  	}
+}
