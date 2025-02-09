@@ -342,4 +342,19 @@ server {
 	location /.well-known/acme-challenge/ {
 	        root /var/www/certbot;
   	}
+	listen 443 ssl; # managed by Certbot
+        ssl_certificate /etc/nginx/ssl/live/progetti-di-paz.ienza.tech/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/nginx/ssl/live/progetti-di-paz.ienza.tech/privkey.pem; # managed by Certbo
+}
+server {
+    if ($host = progetti-di-paz.ienza.tech) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+        server_name progetti-di-paz.ienza.tech;
+    listen 80;
+    return 404; # managed by Certbot
+
 }
