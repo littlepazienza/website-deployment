@@ -70,6 +70,41 @@ runKalman () {
   rm -rf $KALMAN/tmp
 }
 
+########
+# Blog
+########
+runBlog () {
+
+  echo "Downloading the blog artifact"
+
+  # Get the latest artifact URL
+  ZIP_URL=$(curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/littlepazienza/blog-website/actions/artifacts | jq -r '.artifacts[0].archive_download_url')
+  echo "Download url is: $ZIP_URL"
+
+  # Download the artifact to a local file called zip
+  curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $ZIP_URL -O
+
+  BLOG=$START_DIR/var/www/html/blog.ienza.tech
+  ZIP_FILE=zip
+  TAR_FILE=website.tar.gz
+
+  # Ensure any of our setup is cleaned up
+  rm -rf $BLOG/*
+
+  # Move the zip into the target dir for my website, extract the relevant files, remove all the clutter
+  mkdir $BLOG/tmp
+  mv $ZIP_FILE $BLOG/tmp/
+  cd $BLOG/tmp
+  unzip $ZIP_FILE
+  tar -xzvf $TAR_FILE
+  mv * $BLOG
+
+  # Cleanup out folders
+  cd $BLOG
+  rm -rf $BLOG/tmp
+}
+
+
 
 case $1 in
   -a)
@@ -79,6 +114,10 @@ case $1 in
   -b)
     echo "Kalman was triggered"
     runKalman
+    ;;
+  -c)
+    echo "Blog was triggered"
+    runBlog
     ;;
   *)
     echo "Invalid option: -$OPTARG" >&2
