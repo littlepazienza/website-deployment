@@ -169,7 +169,7 @@ server {
 
 	server_name server.blog.ienza.tech;
 
-	add_header Access-Control-Allow-Origin *;
+	# add_header Access-Control-Allow-Origin *; # CORS will be handled by the blog-server
 
 	location / {
 		proxy_set_header        Host $host:$server_port;
