@@ -84,7 +84,7 @@ runBlog () {
   # Download the artifact to a local file called zip
   curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" $ZIP_URL -O
 
-  BLOG=$START_DIR/var/www/html/blog.ienza.tech
+  BLOG=$START_DIR/var/www/html/blog.ienza.tech/main
   ZIP_FILE=zip
   TAR_FILE=website.tar.gz
 
@@ -97,7 +97,7 @@ runBlog () {
   cd $BLOG/tmp
   unzip $ZIP_FILE
   tar -xzvf $TAR_FILE
-  mv * $BLOG
+  mv dist/blog-website/* $BLOG
 
   # Cleanup out folders
   cd $BLOG
